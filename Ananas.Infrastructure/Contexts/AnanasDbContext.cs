@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ananas.Infrastructure.Contexts
 {
-    public partial class AnanasContext : DbContext
+    public partial class AnanasDbContext : DbContext
     {
-        public AnanasContext()
+        public AnanasDbContext()
         {
         }
 
-        public AnanasContext(DbContextOptions<AnanasContext> options)
+        public AnanasDbContext(DbContextOptions<AnanasDbContext> options)
             : base(options)
         {
         }

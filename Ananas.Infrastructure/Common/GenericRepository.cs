@@ -1,11 +1,5 @@
 ﻿using Ananas.Core.Interfaces;
 using Ananas.Infrastructure.Contexts;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ananas.Infrastructure.Common
 {
