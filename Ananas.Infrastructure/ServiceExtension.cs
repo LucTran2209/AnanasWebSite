@@ -1,4 +1,5 @@
-﻿using Ananas.Core.Interfaces;
+﻿using Ananas.Core.Common;
+using Ananas.Core.Interfaces;
 using Ananas.Infrastructure.Common;
 using Ananas.Infrastructure.Contexts;
 using Ananas.Infrastructure.Repositories;
@@ -19,6 +20,7 @@ namespace Ananas.Infrastructure
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IColorRepository, ColorRepository>();
+            services.AddScoped<IMarketRepository, MarketRepository>();
 
             return services;
         }

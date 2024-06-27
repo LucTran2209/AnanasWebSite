@@ -22,7 +22,9 @@ namespace Ananas.Api
             // Add services to the container.
             builder.Services.AddDIServices(builder.Configuration);
             builder.Services.AddAutoMapperProfiles();
+            // DI Service
             builder.Services.AddScoped<IColorService, ColorService>();
+            builder.Services.AddScoped<IMarketService, MarketService>();
 
             var app = builder.Build();
 

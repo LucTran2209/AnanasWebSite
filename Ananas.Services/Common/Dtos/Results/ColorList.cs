@@ -22,13 +22,22 @@ namespace Ananas.Services.Common.Dtos.Results
     }
 
 
+    public class ProductListOutputDto
+    {
+        public List<ProductDto>? ProductList { get; set; }
+    }
 
-    //public class LucTran
-    //{
-    //    [Required]
-    //    public string Name { get; set; }
+    public class ProductDto
+    {
+        public string? ProductName { get; set; } 
+        public decimal Price { get; set; }
 
-    //    [Range(0, 100)]
-    //    public int Age { get; set; }
-    //}
+        public List<ProductDetailDto>? ProductDetailList { get; set; }
+
+    }
+
+    public class ProductDetailDto
+    {
+        public int ProductDetailId { get; set;}
+    }
 }

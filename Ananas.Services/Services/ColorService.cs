@@ -1,8 +1,8 @@
 ﻿using Ananas.Core.Models;
-using Ananas.Core.Interfaces;
 using Ananas.Services.Common.Dtos.Results;
 using Ananas.Services.Interfaces;
 using AutoMapper;
+using Ananas.Core.Common;
 
 namespace Ananas.Services.Services
 {

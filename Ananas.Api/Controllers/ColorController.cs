@@ -25,8 +25,7 @@ namespace Ananas.Api.Controllers
         public async Task<IActionResult> GetProductList()
         {
             try
-            {
-                
+            {           
                 var colorList = await _colorService.GetAllColor();
   
                 if (colorList == null)

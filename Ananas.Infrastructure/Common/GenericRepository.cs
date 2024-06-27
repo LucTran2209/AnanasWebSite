@@ -1,4 +1,4 @@
-﻿using Ananas.Core.Interfaces;
+﻿using Ananas.Core.Common;
 using Ananas.Infrastructure.Contexts;
 
 namespace Ananas.Infrastructure.Common
