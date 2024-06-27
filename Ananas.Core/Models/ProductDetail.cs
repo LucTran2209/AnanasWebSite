@@ -17,6 +17,10 @@ public partial class ProductDetail
 
     public int Quantity { get; set; }
 
+    public string? Image { get; set; }
+
+    public string? Specialname { get; set; }
+
     public virtual Color Color { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;

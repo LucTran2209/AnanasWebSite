@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ananas.Core.Models;
+namespace Ananas.Core.Models;    
 
 public partial class Size
 {

@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ananas.Infrastructure.Contexts
 {
-    public partial class AnanasDbContext : DbContext
+    public partial class AnanasContext : DbContext
     {
-        public AnanasDbContext()
+        public AnanasContext()
         {
         }
 
-        public AnanasDbContext(DbContextOptions<AnanasDbContext> options)
+        public AnanasContext(DbContextOptions<AnanasContext> options)
             : base(options)
         {
         }
@@ -44,8 +44,8 @@ namespace Ananas.Infrastructure.Contexts
         {
 
         }
-        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        //        => optionsBuilder.UseSqlServer("server =(local); database =Ananas ;uid=sa;pwd=123456;Trusted_Connection=True;Encrypt=False");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//            => optionsBuilder.UseSqlServer("server =(local); database =Ananas ;uid=sa;pwd=123456;Trusted_Connection=True;Encrypt=False");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -243,9 +243,6 @@ namespace Ananas.Infrastructure.Contexts
                     .HasMaxLength(50)
                     .HasColumnName("size");
                 entity.Property(e => e.StyleId).HasColumnName("styleID");
-                entity.Property(e => e.Thumbnail)
-                    .HasMaxLength(255)
-                    .HasColumnName("thumbnail");
                 entity.Property(e => e.Upper).HasColumnName("upper");
 
                 entity.HasOne(d => d.Category).WithMany(p => p.Products)
@@ -289,10 +286,16 @@ namespace Ananas.Infrastructure.Contexts
 
                 entity.Property(e => e.ProductDetailId).HasColumnName("productDetailID");
                 entity.Property(e => e.ColorId).HasColumnName("colorID");
+                entity.Property(e => e.Image)
+                    .HasMaxLength(255)
+                    .HasColumnName("image");
                 entity.Property(e => e.ProductId).HasColumnName("productID");
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
                 entity.Property(e => e.SexId).HasColumnName("sexID");
                 entity.Property(e => e.SizeId).HasColumnName("sizeID");
+                entity.Property(e => e.Specialname)
+                    .HasMaxLength(255)
+                    .HasColumnName("specialname");
 
                 entity.HasOne(d => d.Color).WithMany(p => p.ProductDetails)
                     .HasForeignKey(d => d.ColorId)
