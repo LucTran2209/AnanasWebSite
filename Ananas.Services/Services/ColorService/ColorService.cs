@@ -1,10 +1,9 @@
 ﻿using Ananas.Core.Models;
-using Ananas.Services.Common.Dtos.Results;
 using Ananas.Services.Interfaces;
 using AutoMapper;
 using Ananas.Core.Common;
 
-namespace Ananas.Services.Services
+namespace Ananas.Services.Services.ColorService
 {
     public class ColorService : IColorService
     {

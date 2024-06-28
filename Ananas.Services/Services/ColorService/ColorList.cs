@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ananas.Services.Common.Dtos.Results
+namespace Ananas.Services.Services.ColorService
 {
     public class ColorList
     {

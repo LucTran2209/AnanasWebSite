@@ -2,7 +2,8 @@
 using Ananas.Infrastructure;
 using Ananas.Services.Common.Mapper;
 using Ananas.Services.Interfaces;
-using Ananas.Services.Services;
+using Ananas.Services.Services.ColorService;
+using Ananas.Services.Services.MarketService;
 
 namespace Ananas.Api
 {
