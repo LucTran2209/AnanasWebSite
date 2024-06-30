@@ -11,6 +11,8 @@ namespace Ananas.Core.Common
     {
         IColorRepository Colors { get; }
         IMarketRepository Markets { get; }
+
+        IStyleRepository Styles { get; }
         //int Save();
     }
 }
