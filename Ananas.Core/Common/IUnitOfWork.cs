@@ -13,6 +13,10 @@ namespace Ananas.Core.Common
         IMarketRepository Markets { get; }
 
         IStyleRepository Styles { get; }
+
+        ICollectionRepository Collections { get; }
+
+        
         //int Save();
     }
 }

@@ -1,6 +1,7 @@
 using Ananas.Infrastructure;
 using Ananas.Services.Common.Mapper;
 using Ananas.Services.Interfaces;
+using Ananas.Services.Services.CollectionService;
 using Ananas.Services.Services.ColorService;
 using Ananas.Services.Services.MarketService;
 using Ananas.Services.Services.StyleService;
@@ -27,6 +28,7 @@ namespace Ananas.Api
             builder.Services.AddScoped<IColorService, ColorService>();
             builder.Services.AddScoped<IMarketService, MarketService>();
             builder.Services.AddScoped<IStyleService, StyleService>();
+            builder.Services.AddScoped<ICollectionService, CollectionService>();
 
             var app = builder.Build();
 
