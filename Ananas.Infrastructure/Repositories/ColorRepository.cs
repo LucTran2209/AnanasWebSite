@@ -2,6 +2,7 @@
 using Ananas.Core.Models;
 using Ananas.Infrastructure.Common;
 using Ananas.Infrastructure.Contexts;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,8 @@ namespace Ananas.Infrastructure.Repositories
 {
     public class ColorRepository : GenericRepository<Color>, IColorRepository
     {
-        public ColorRepository(AnanasDbContext dbContext) : base(dbContext)
+        public ColorRepository(AnanasDbContext context, IMapper mapper) : base(context, mapper)
         {
-
         }
 
         public override Task Add(Color entity)

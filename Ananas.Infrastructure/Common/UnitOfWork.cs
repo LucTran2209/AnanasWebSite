@@ -16,13 +16,17 @@ namespace Ananas.Infrastructure.Common
 
         public IMarketRepository Markets { get; }
 
+        public IProductRepository Products { get; }
+
         public UnitOfWork(AnanasDbContext dbContext,
                           IColorRepository colorRepository,
-                          IMarketRepository marketRepository)
+                          IMarketRepository marketRepository,
+                          IProductRepository products)
         {
             _dbContext = dbContext;
             Colors = colorRepository;
             Markets = marketRepository;
+            Products = products;    
         }
 
         public int Save()

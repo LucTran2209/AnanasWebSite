@@ -12,7 +12,7 @@ public partial class ProductDetail
     public int ColorId { get; set; }
 
     public int SexId { get; set; }
-
+        
     public int SizeId { get; set; }
 
     public int Quantity { get; set; }

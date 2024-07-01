@@ -1,5 +1,4 @@
 ﻿using Ananas.Core.Common;
-using Ananas.Core.Models;
 using Ananas.Services.Common.Base;
 using Ananas.Services.Interfaces;
 using AutoMapper;
@@ -9,29 +8,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ananas.Services.Services.MarketService
+namespace Ananas.Services.Services.ProductService
 {
-    public class MarketService : BaseService, IMarketService
+    public class ProductService : BaseService, IProductService
     {
-        public MarketService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
         }
 
-        public async Task<IEnumerable<Market>> GetAll()
+        public async Task<dynamic> GetProductList()
         {
             try
             {
-                var marketList = await _unitOfWork.Markets.GetAll();
+                var productList = await _unitOfWork.Products.GetList();
 
-                return marketList;
+                return productList;
             }
             catch (Exception)
             {
 
                 throw;
             }
+            
+
         }
-
-
     }
 }

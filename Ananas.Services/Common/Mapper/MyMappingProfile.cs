@@ -13,12 +13,7 @@ namespace Ananas.Services.Common.Mapper
     {
         public MyMappingProfile()
         {
-
-            CreateMap<Color, ColorDto>();
-               
-            
-            
-            
+            CreateMap<Color, ColorDto>();       
         }
     }
 }

@@ -2,6 +2,7 @@
 using Ananas.Core.Models;
 using Ananas.Infrastructure.Common;
 using Ananas.Infrastructure.Contexts;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Ananas.Infrastructure.Repositories
 {
     public class MarketRepository : GenericRepository<Market>, IMarketRepository
     {
-        public MarketRepository(AnanasDbContext context) : base(context)
+        public MarketRepository(AnanasDbContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
