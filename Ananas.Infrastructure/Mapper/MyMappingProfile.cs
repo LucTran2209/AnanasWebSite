@@ -12,6 +12,7 @@ namespace Ananas.Infrastructure.Mapper
             CreateMap<ProductDetail, ProdutDetailDto>();
             CreateMap<Product, ProductDto>()
                 .ForMember(src => src.ProductDetailList, opt => opt.MapFrom(dest => dest.ProductDetails));
+            CreateMap<ProductDetailCreateInputDto, ProductDetail>();
         }
     }
 }

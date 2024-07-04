@@ -8,6 +8,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.20" />
+
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.20">
 			<PrivateAssets>all</PrivateAssets>
@@ -18,11 +21,12 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Ananas.Core\Ananas.Core.csproj" />
+		<ProjectReference Include="..\Ananas.Core\Ananas.Core.csproj" />
 	</ItemGroup>
 
 </Project>

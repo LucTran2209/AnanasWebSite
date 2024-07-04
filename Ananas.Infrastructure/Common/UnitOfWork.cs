@@ -1,11 +1,6 @@
 ﻿using Ananas.Core.Common;
 using Ananas.Core.Interfaces;
 using Ananas.Infrastructure.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ananas.Infrastructure.Common
 {
@@ -17,16 +12,15 @@ namespace Ananas.Infrastructure.Common
         public IMarketRepository Markets { get; }
 
         public IProductRepository Products { get; }
+        public IProductDetailRepository ProductDetails { get; }
 
-        public UnitOfWork(AnanasDbContext dbContext,
-                          IColorRepository colorRepository,
-                          IMarketRepository marketRepository,
-                          IProductRepository products)
+        public UnitOfWork(AnanasDbContext dbContext, IColorRepository colors, IMarketRepository markets, IProductRepository products, IProductDetailRepository productDetails)
         {
             _dbContext = dbContext;
-            Colors = colorRepository;
-            Markets = marketRepository;
-            Products = products;    
+            Colors = colors;
+            Markets = markets;
+            Products = products;
+            ProductDetails = productDetails;
         }
 
         public int Save()

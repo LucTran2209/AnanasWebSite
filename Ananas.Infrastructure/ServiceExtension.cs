@@ -22,6 +22,7 @@ namespace Ananas.Infrastructure
             services.AddScoped<IColorRepository, ColorRepository>();
             services.AddScoped<IMarketRepository, MarketRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
 
             return services;
         }

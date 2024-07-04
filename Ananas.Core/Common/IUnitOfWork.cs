@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ananas.Core.Interfaces;
+﻿using Ananas.Core.Interfaces;
 
 namespace Ananas.Core.Common
 {
@@ -12,6 +7,7 @@ namespace Ananas.Core.Common
         IColorRepository Colors { get; }
         IMarketRepository Markets { get; }
         IProductRepository Products { get; }
+        IProductDetailRepository ProductDetails { get; }
 
         //int Save();
     }
