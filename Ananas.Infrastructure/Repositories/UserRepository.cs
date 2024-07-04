@@ -39,6 +39,11 @@ namespace Ananas.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// GetById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public override async Task<User> GetById(int id)
         {
             try
