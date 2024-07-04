@@ -21,7 +21,12 @@ namespace Ananas.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IColorRepository, ColorRepository>();
             services.AddScoped<IMarketRepository, MarketRepository>();
-
+            services.AddScoped<IStyleRepository, StyleRepository>();
+            services.AddScoped<ICollectionRepository, CollectionRepository>();
+            services.AddScoped<ISexRepository, SexRepository>();
+            services.AddScoped<ISizeRepository, SizeRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
             return services;
         }
     }

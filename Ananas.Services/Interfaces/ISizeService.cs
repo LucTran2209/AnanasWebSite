@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Ananas.Services.Interfaces
 {
-    public interface IStyleService
+    public interface ISizeService
     {
-        Task<IEnumerable<Style>> GetAll();
-        //Task<Style> Create(Style style);
+        Task<IEnumerable<Size>> GetAll();
     }
 }

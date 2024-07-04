@@ -11,6 +11,16 @@ namespace Ananas.Core.Common
     {
         IColorRepository Colors { get; }
         IMarketRepository Markets { get; }
+
+        ICollectionRepository Collections { get; }
+        IStyleRepository Styles { get; }
+
+        ISexRepository Sex { get; }
+        ISizeRepository Sizes { get; }
+        ICategoryRepository Categories { get; }
+
+        IDiscountRepository Discounts { get; }
+
         //int Save();
     }
 }

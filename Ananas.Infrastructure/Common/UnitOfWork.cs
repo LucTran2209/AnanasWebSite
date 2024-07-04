@@ -16,13 +16,37 @@ namespace Ananas.Infrastructure.Common
 
         public IMarketRepository Markets { get; }
 
+        public ICollectionRepository Collections { get; }
+        public IStyleRepository Styles { get; }
+
+        public ISexRepository Sex { get; }
+        public ISizeRepository Sizes { get; }
+
+        public ICategoryRepository Categories { get; }
+
+        public IDiscountRepository Discounts { get; }
+
+
+
         public UnitOfWork(AnanasDbContext dbContext,
                           IColorRepository colorRepository,
-                          IMarketRepository marketRepository)
+                          IMarketRepository marketRepository,
+                          ICollectionRepository collectionRepository,
+                          IStyleRepository styleRepository,
+                          ISexRepository sexRepository,
+                          ISizeRepository sizeRepository,
+                          ICategoryRepository categoryRepository,
+                          IDiscountRepository discountRepository)
         {
             _dbContext = dbContext;
             Colors = colorRepository;
             Markets = marketRepository;
+            Collections = collectionRepository;
+            Styles = styleRepository;
+            Sex = sexRepository;
+            Sizes = sizeRepository;
+            Categories = categoryRepository;
+            Discounts = discountRepository;
         }
 
         public int Save()

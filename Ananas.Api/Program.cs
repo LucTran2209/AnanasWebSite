@@ -1,9 +1,14 @@
-
 using Ananas.Infrastructure;
 using Ananas.Services.Common.Mapper;
 using Ananas.Services.Interfaces;
+using Ananas.Services.Services.CategoryService;
+using Ananas.Services.Services.CollectionService;
 using Ananas.Services.Services.ColorService;
+using Ananas.Services.Services.DiscountService;
 using Ananas.Services.Services.MarketService;
+using Ananas.Services.Services.SexService;
+using Ananas.Services.Services.SizeService;
+using Ananas.Services.Services.StyleService;
 
 namespace Ananas.Api
 {
@@ -26,7 +31,12 @@ namespace Ananas.Api
             // DI Service
             builder.Services.AddScoped<IColorService, ColorService>();
             builder.Services.AddScoped<IMarketService, MarketService>();
-
+            builder.Services.AddScoped<ICollectionService, CollectionService>();
+            builder.Services.AddScoped<IStyleService, StyleService>();
+            builder.Services.AddScoped<ISexService, SexService>();
+            builder.Services.AddScoped<ISizeService, SizeService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IDiscountService, DiscountService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
