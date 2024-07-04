@@ -22,11 +22,12 @@ namespace Ananas.Api.Controllers
             {
                 var list = await _productService.GetProductList();
                 
-                return Ok(list);
+                var res = Result.Success(list);
+
+                return res;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

@@ -4,6 +4,7 @@ using Ananas.Services.Interfaces;
 using ApplicationCommon.Abstractions.Dtos.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ananas.Api.Controllers
 {
@@ -21,6 +22,7 @@ namespace Ananas.Api.Controllers
         /// Get the list of Color
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetProductList()
         {

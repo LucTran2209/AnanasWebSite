@@ -12,7 +12,8 @@ namespace Ananas.Core.Common
         IColorRepository Colors { get; }
         IMarketRepository Markets { get; }
         IProductRepository Products { get; }
-
+        ITokenRepository Tokens { get; }
+        IUserRepository Users { get; }
         //int Save();
     }
 }
