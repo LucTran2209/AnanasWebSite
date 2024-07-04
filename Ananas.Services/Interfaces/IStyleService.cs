@@ -1,4 +1,5 @@
 ﻿using Ananas.Core.Models;
+using Ananas.Services.Services.StyleService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Ananas.Services.Interfaces
     public interface IStyleService
     {
         Task<IEnumerable<Style>> GetAll();
-        //Task<Style> Create(Style style);
+        Task<bool> Create(StyleCreateInputDto styleDto);
+
+        Task<bool> Update(StyleUpdateInputDto styleDto);
     }
 }

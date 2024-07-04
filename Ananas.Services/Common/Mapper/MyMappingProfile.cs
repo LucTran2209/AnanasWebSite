@@ -1,5 +1,6 @@
 ﻿using Ananas.Core.Models;
 using Ananas.Services.Services.ColorService;
+using Ananas.Services.Services.StyleService;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,8 @@ namespace Ananas.Services.Common.Mapper
         {
 
             CreateMap<Color, ColorDto>();
-               
-            
-            
-            
+            CreateMap<StyleCreateInputDto, Style>();
+            CreateMap<StyleUpdateInputDto, Style>();
         }
     }
 }

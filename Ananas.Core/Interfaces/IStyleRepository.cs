@@ -11,5 +11,9 @@ namespace Ananas.Core.Interfaces
     public interface IStyleRepository : IGenericRepository<Style>
     {
         Task<List<Style>> GetByName(string name);
+
+        Task<bool> UpdateStyle(Style style);
+        Task<Style> GetById(int id);
+
     }
 }

@@ -22,25 +22,41 @@ namespace Ananas.Services.Services.StyleService
             try
             {
                 var styleList = await _unitOfWork.Styles.GetAll();
-                return styleList;
+                return (IEnumerable<Style>)styleList;
             }
-            catch(Exception) 
+            catch (Exception)
             {
                 throw;
             }
         }
-        //public async Task<Style> Create(Style style)
-        //{
-        //    try
-        //    {
-        //        var createStyle = await _unitOfWork.Styles.Add(style);
-                
-        //        return createStyle;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+
+        public async Task<bool> Create(StyleCreateInputDto styleDto)
+        {
+            try
+            {
+                var style = _mapper.Map<Style>(styleDto);
+                await _unitOfWork.Styles.Add(style);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> Update(StyleUpdateInputDto styleDto)
+        {
+            try
+            {
+                var style = _mapper.Map<Style>(styleDto);
+                var updated = await _unitOfWork.Styles.UpdateStyle(style);
+                return updated;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }

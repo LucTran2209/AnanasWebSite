@@ -17,9 +17,17 @@ namespace Ananas.Infrastructure.Repositories
         {
         }
 
-        public override Task Add(Style entity)
+        public override async Task Add(Style style)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _dbContext.Styles.AddAsync(style);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override void Delete(Style entity)
@@ -40,14 +48,41 @@ namespace Ananas.Infrastructure.Repositories
             }
         }
 
-        public override Task<Style> GetById(int id)
+        public override async Task<Style> GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.Styles.FindAsync(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public Task<List<Style>> GetByName(string name)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> UpdateStyle(Style style)
+        {
+            try
+            {
+                var existingStyle = await _dbContext.Styles.FindAsync(style.StyleId);
+                if (existingStyle == null)
+                {
+                    return false; 
+                }
+
+                _dbContext.Entry(existingStyle).CurrentValues.SetValues(style);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override void Update(Style entity)
