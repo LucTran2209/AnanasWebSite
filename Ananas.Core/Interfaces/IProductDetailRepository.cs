@@ -9,6 +9,8 @@ namespace Ananas.Core.Interfaces
         //interface different common of Detail Product
         Task<bool> CreateNewDetail(ProductDetailCreateInputDto pdetail);
         Task<ProductDetailCreateInputDto> UpdateDetail(int id, ProductDetailCreateInputDto pdetail);
+
+        Task<List<ProductDetailFilterOutputDto>> GetProductDetailFilter(ProductDetailFilterInputDto flist);
     }
 
 }

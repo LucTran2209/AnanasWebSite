@@ -101,5 +101,19 @@ namespace Ananas.Api.Controllers
                 throw;
             }
         }
+        [HttpPost("GetFilterProductDeatil")]
+        public async Task<IActionResult> GetFilterProductDeatil([FromQuery] ProductDetailFilterInputDto pfilter)
+        {
+            try
+            {
+                var list = await _detailService.GetProductDetailFilter(pfilter);
+                return Ok(list);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

@@ -79,6 +79,118 @@ namespace Ananas.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+
+
+        public async Task<List<ProductDetailFilterOutputDto>> GetProductDetailFilter(ProductDetailFilterInputDto flist)
+        {
+            try
+            {
+                var filter = await _dbContext.ProductDetails.Include(p => p.Product).ThenInclude(p => p.Category).Include(p => p.Sex).ToListAsync();
+                if (flist.ListSexId != null && flist.ListSexId.Any())
+                {
+                    foreach (var item in flist.ListSexId)
+                    {
+                        filter = filter.Where(p => p.SexId == item.SexId).ToList();
+                    }
+
+                }
+                if (flist.ListColorId != null && flist.ListColorId.Any())
+                {
+                    foreach (var item in flist.ListColorId)
+                    {
+                        filter = filter.Where(p => p.ColorId == item.ColorId).ToList();
+                    }
+
+                }
+                if (!flist.ListCategoryId.Any())
+                {
+                    foreach (var item in flist.ListCategoryId)
+                    {
+                        filter = filter.Where(p => p.Product.CategoryId == item.CategoryId).ToList();
+                    }
+
+
+                }
+                if (!flist.ListProductLineId.Any())
+                {
+                    foreach (var item in flist.ListProductLineId)
+                    {
+                        filter = filter.Where(p => p.Product.ProductLineId == item.ProductLineId).ToList();
+                    }
+
+                }
+                if (!flist.ListStyleId.Any())
+                {
+                    foreach (var item in flist.ListStyleId)
+                    {
+                        filter = filter.Where(p => p.Product.StyleId == item.StyleId).ToList();
+                    }
+
+                }
+                if (!flist.ListCollectionId.Any())
+                {
+                    foreach (var item in flist.ListCollectionId)
+                    {
+                        filter = filter.Where(p => p.Product.CollectionId == item.CollectionId).ToList();
+                    }
+
+                }
+
+                if (!flist.ListMarketId.Any())
+                {
+                    foreach (var item in flist.ListMarketId)
+                    {
+                        filter = filter.Where(p => p.Product.MarketId == item.MarketId).ToList();
+                    }
+
+                }
+
+                if (!flist.ListProductStatusId.Any())
+                {
+                    foreach (var item in flist.ListProductStatusId)
+                    {
+                        filter = filter.Where(p => p.Product.ProductStatusId == item.ProductStatusId).ToList();
+                    }
+
+                }
+                if (!flist.ListPriceRanges.Any())
+                {
+                    decimal min = 0;
+                    decimal max = 0;
+                    foreach (var item in flist.ListPriceRanges)
+                    {
+                        min = item.PriceMin;
+                        max = item.PriceMax;
+                        if (min < max)
+                        {
+                            filter = filter.Where(p => p.Product.Price > min && p.Product.Price < max).ToList();
+                        }
+                    }
+                }
+                List<ProductDetailFilterOutputDto> listfilter = new List<ProductDetailFilterOutputDto>();
+                foreach (var item in filter)
+                {
+                    ProductDetailFilterOutputDto p = new ProductDetailFilterOutputDto();
+                    p.ProductId = item.ProductId;
+                    p.ProductDetailId = item.ProductDetailId;
+                    p.Name = item.Product.Name + " - " + item.Product.ProductCode + " - " + item.Specialname;
+                    p.Quantity = item.Product.Quantity;
+                    p.Size = item.Product.Size;
+                    p.Price = (decimal)item.Product.Price;
+                    listfilter.Add(p);
+
+                }
+                return listfilter;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
         public override void Update(ProductDetail entity)
         {
             throw new NotImplementedException();
@@ -110,5 +222,7 @@ namespace Ananas.Infrastructure.Repositories
                 throw;
             }
         }
+
+
     }
 }

@@ -47,6 +47,21 @@ namespace Ananas.Services.Services.ProductDetailService
                 throw;
             }
         }
+
+        public async Task<List<ProductDetailFilterOutputDto>> GetProductDetailFilter(ProductDetailFilterInputDto flist)
+        {
+            try
+            {
+                var list = await _unitOfWork.ProductDetails.GetProductDetailFilter(flist);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         //Update detail by id
         public async Task<ProductDetailCreateInputDto> UpdateDetail(int id, ProductDetailCreateInputDto pdetail)
         {
