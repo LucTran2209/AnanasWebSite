@@ -48,17 +48,7 @@ namespace Ananas.Infrastructure.Repositories
         public async Task<ProductGetProductDataAccess> GetList()
         {
             try
-            {
-                //var productList = await _dbContext.Products
-                //                        .Include(p => p.ProductDetails)
-                //                        .Select( p => new ProductDto
-                //                        {
-                //                            ProductId = p.ProductId,
-                //                            Price= p.Price,
-                //                            ProductName = p.
-                //                        })
-                //                        .ToListAsync();
-
+            {             
                 ProductGetProductDataAccess result = new ProductGetProductDataAccess();
                 result.ProductList = new List<ProductDto>();
 
