@@ -58,5 +58,18 @@ namespace Ananas.Services.Services.StyleService
             }
 
         }
+
+        public async Task<List<GetByNameOutputDto>> GetByName(string name)
+        {
+            try
+            {
+                var styles = await _unitOfWork.Styles.GetByName(name);
+                return _mapper.Map<List<GetByNameOutputDto>>(styles);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace Ananas.Core.Interfaces
     public interface ICollectionRepository : IGenericRepository<Collection>
     {
         Task<List<Collection>> GetByName(string name);
+        Task<bool> UpdateCollection(Collection collection);
+        Task<Collection> GetById(int id);
     }
 }

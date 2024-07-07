@@ -1,7 +1,12 @@
-﻿using Ananas.Services.Interfaces;
+﻿using Ananas.Core.Models;
+using Ananas.Services.Interfaces;
+using Ananas.Services.Services.CategoryService;
+using Ananas.Services.Services.CollectionService;
 using ApplicationCommon.Abstractions.Dtos.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace Ananas.Api.Controllers
 {
@@ -26,6 +31,54 @@ namespace Ananas.Api.Controllers
                 return res;
             }
             catch (Exception ) { throw; }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CategoryCreateInputDto category)
+        {
+            try
+            {
+                var createdCategory = await _categoryService.Create(category);
+                var res = Result.Success(createdCategory);
+                return res;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] CategoryUpdateInputDto category)
+        {
+            try
+            {
+                var updated = await _categoryService.Update(category);
+                if (updated)
+                {
+                    return Ok(Result.Success("Update successful"));
+                }
+                return NotFound(Result.Failure("Style not found"));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetByName([FromQuery] string name)
+        {
+            try
+            {
+                var categories = await _categoryService.GetByName(name);
+                var res = Result.Success(categories);
+                return res;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

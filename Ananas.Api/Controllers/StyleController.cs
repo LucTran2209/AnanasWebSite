@@ -4,6 +4,8 @@ using Ananas.Services.Services.StyleService;
 using ApplicationCommon.Abstractions.Dtos.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace Ananas.Api.Controllers
 {
@@ -16,23 +18,21 @@ namespace Ananas.Api.Controllers
         {
             _styleService = styleService;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var styleList = await _styleService.GetAll();
-
-                //result
                 var res = Result.Success(styleList);
                 return res;
             }
-            catch (Exception) 
-            { 
-                throw; 
+            catch (Exception)
+            {
+                throw;
             }
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] StyleCreateInputDto style)
@@ -60,6 +60,21 @@ namespace Ananas.Api.Controllers
                     return Ok(Result.Success("Update successful"));
                 }
                 return NotFound(Result.Failure("Style not found"));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetByName([FromQuery] string name)
+        {
+            try
+            {
+                var styles = await _styleService.GetByName(name);
+                var res = Result.Success(styles);
+                return res;
             }
             catch (Exception)
             {

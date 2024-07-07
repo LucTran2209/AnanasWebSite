@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace Ananas.Services.Services.CategoryService
 {
-    internal class CategoryServiceInputDto
+    public class CategoryCreateInputDto
     {
-
+        public string? Name { get; set; }
+        public string? Slug { get; set; }
     }
     // OutputDto for method GetByName
-    public class GetByNameOutputDto
+    public class CategoryUpdateInputDto
     {
+        public int CategoryId { get; set; }
+        public string? Name { get; set; }
+        public string? Slug { get; set; }
+    }
 
+    public class CategoryGetByNameOutputDto
+    {
+        public int CategoryId { get; set; }
+        public string? Name { get; set; }
+        public string? Slug { get; set; }
     }
 }

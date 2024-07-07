@@ -27,13 +27,4 @@ namespace Ananas.Services.Services.StyleService
         public string? Name { get; set; }
         public string? Slug { get; set; }
     }
-    //public class StyleDto
-    //{
-    //    public int StyleId { get; set; }
-
-    //    public string? Name { get; set; }
-
-    //    public string? Slug { get; set; }
-
-    //}
 }

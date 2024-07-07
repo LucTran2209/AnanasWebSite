@@ -17,9 +17,17 @@ namespace Ananas.Infrastructure.Repositories
         {
         }
 
-        public override Task Add(Category entity)
+        public override async Task Add(Category category)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _dbContext.Categories.AddAsync(category);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override void Delete(Category entity)
@@ -34,22 +42,60 @@ namespace Ananas.Infrastructure.Repositories
                 var categoryList = await _dbContext.Categories.ToListAsync();
                 return categoryList;
             }
-            catch (Exception ) { throw; }
+            catch(Exception) 
+            { 
+                throw; 
+            }
         }
 
-        public override Task<Category> GetById(int id)
+        public override async Task<Category> GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.Categories.FindAsync(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<List<Category>> GetByName(string name)
+        public async Task<List<Category>> GetByName(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.Categories.Where(s => s.Name.Contains(name)).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+      
+        public async Task<bool> UpdateCollection(Category category)
+        {
+            try
+            {
+                var existingCategory = await _dbContext.Categories.FindAsync(category.CategoryId);
+                if (existingCategory == null)
+                {
+                    return false;
+                }
+
+                _dbContext.Entry(existingCategory).CurrentValues.SetValues(category);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override void Update(Category entity)
         {
             throw new NotImplementedException();
         }
+
     }
 }

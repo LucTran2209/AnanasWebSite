@@ -12,7 +12,7 @@ namespace Ananas.Services.Interfaces
     {
         Task<IEnumerable<Style>> GetAll();
         Task<bool> Create(StyleCreateInputDto styleDto);
-
         Task<bool> Update(StyleUpdateInputDto styleDto);
+        Task<List<GetByNameOutputDto>> GetByName(string name);
     }
 }

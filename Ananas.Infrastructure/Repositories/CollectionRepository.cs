@@ -17,9 +17,17 @@ namespace Ananas.Infrastructure.Repositories
         {
         }
 
-        public override Task Add(Collection entity)
+        public override async Task Add(Collection collection)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _dbContext.Collections.AddAsync(collection);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override void Delete(Collection entity)
@@ -31,23 +39,57 @@ namespace Ananas.Infrastructure.Repositories
         {
             try
             {
-                var marketList = await _dbContext.Collections.ToListAsync();
-                return marketList;
+                var collectionList = await _dbContext.Collections.ToListAsync();
+                return collectionList;
             }
-            catch (Exception) 
-            { 
-                throw; 
+            catch (Exception)
+            {
+                throw;
             }
         }
 
-        public override Task<Collection> GetById(int id)
+        public override async Task<Collection> GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.Collections.FindAsync(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<List<Collection>> GetByName(string name)
+        public async Task<List<Collection>> GetByName(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.Collections.Where(c => c.Name.Contains(name)).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> UpdateCollection(Collection collection)
+        {
+            try
+            {
+                var existingCollection = await _dbContext.Collections.FindAsync(collection.CollectionId);
+                if (existingCollection == null)
+                {
+                    return false;
+                }
+
+                _dbContext.Entry(existingCollection).CurrentValues.SetValues(collection);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override void Update(Collection entity)

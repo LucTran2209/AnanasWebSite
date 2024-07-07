@@ -60,9 +60,16 @@ namespace Ananas.Infrastructure.Repositories
             }
         }
 
-        public Task<List<Style>> GetByName(string name)
+        public async Task<List<Style>> GetByName(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.Styles.Where(s => s.Name.Contains(name)).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<bool> UpdateStyle(Style style)
