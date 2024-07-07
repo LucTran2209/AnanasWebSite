@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ananas.Core.Interfaces
+namespace Ananas.Core.Common
 {
     public interface IGenericRepository<T> where T : class
     {

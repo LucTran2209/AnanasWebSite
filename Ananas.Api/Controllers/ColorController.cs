@@ -1,5 +1,5 @@
 ﻿using Ananas.Core.Models;
-using Ananas.Services.Common.Dtos.Results;
+using Ananas.Services.Services.ColorService;
 using Ananas.Services.Interfaces;
 using ApplicationCommon.Abstractions.Dtos.Results;
 using Microsoft.AspNetCore.Http;
@@ -25,8 +25,7 @@ namespace Ananas.Api.Controllers
         public async Task<IActionResult> GetProductList()
         {
             try
-            {
-                
+            {           
                 var colorList = await _colorService.GetAllColor();
   
                 if (colorList == null)

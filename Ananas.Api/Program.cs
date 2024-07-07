@@ -1,8 +1,11 @@
 
 using Ananas.Infrastructure;
+using Ananas.Infrastructure.Mapper;
 using Ananas.Services.Common.Mapper;
 using Ananas.Services.Interfaces;
-using Ananas.Services.Services;
+using Ananas.Services.Services.ColorService;
+using Ananas.Services.Services.MarketService;
+using Ananas.Services.Services.ProductService;
 
 namespace Ananas.Api
 {
@@ -22,7 +25,11 @@ namespace Ananas.Api
             // Add services to the container.
             builder.Services.AddDIServices(builder.Configuration);
             builder.Services.AddAutoMapperProfiles();
+            builder.Services.AddAutoMapperInfastructure();
+            // DI Service
             builder.Services.AddScoped<IColorService, ColorService>();
+            builder.Services.AddScoped<IMarketService, MarketService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 

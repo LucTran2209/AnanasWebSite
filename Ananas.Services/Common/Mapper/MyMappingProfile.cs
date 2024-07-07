@@ -1,5 +1,5 @@
 ﻿using Ananas.Core.Models;
-using Ananas.Services.Common.Dtos.Results;
+using Ananas.Services.Services.ColorService;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -13,12 +13,7 @@ namespace Ananas.Services.Common.Mapper
     {
         public MyMappingProfile()
         {
-
-            CreateMap<Color, ColorDto>();
-               
-            
-            
-            
+            CreateMap<Color, ColorDto>();       
         }
     }
 }

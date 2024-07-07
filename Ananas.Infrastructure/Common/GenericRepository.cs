@@ -1,15 +1,18 @@
-﻿using Ananas.Core.Interfaces;
+﻿using Ananas.Core.Common;
 using Ananas.Infrastructure.Contexts;
+using AutoMapper;
 
 namespace Ananas.Infrastructure.Common
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly AnanasDbContext _dbContext;
+        protected readonly IMapper _mapper; 
 
-        protected GenericRepository(AnanasDbContext context)
+        protected GenericRepository(AnanasDbContext context, IMapper mapper)
         {
             _dbContext = context;
+            _mapper = mapper;
         }
 
         public abstract Task Add(T entity);
