@@ -110,7 +110,7 @@ namespace Ananas.Api.Controllers
         [FromQuery] List<int> ListColorId,
         [FromQuery] List<int> ListMarketId,
         [FromQuery] List<int> ListProductStatusId,
-        [FromQuery] List<int> ListPriceRanges
+        [FromQuery] List<string> ListPriceRanges
         )
         {
             try
@@ -125,7 +125,7 @@ namespace Ananas.Api.Controllers
                     ListStyleId = MapToListStyleIddList(ListStyleId),
                     ListProductLineId = MapToListProductLineIddList(ListProductLineId),
                     ListProductStatusId = MapToListProductStatusIddList(ListProductStatusId),
-
+                    ListPriceRanges = MapToListPriceRanges(ListPriceRanges),
                 };
                 var list = await _detailService.GetProductDetailFilter(filterDto);
                 return Ok(list);
@@ -216,7 +216,19 @@ namespace Ananas.Api.Controllers
             return list;
         }
 
-
+        private List<PriceRange> MapToListPriceRanges(List<string> priceRangeStrings)
+        {
+            var list = new List<PriceRange>();
+            foreach (var range in priceRangeStrings)
+            {
+                var prices = range.Split('-');
+                if (prices.Length == 2 && decimal.TryParse(prices[0], out var priceMin) && decimal.TryParse(prices[1], out var priceMax))
+                {
+                    list.Add(new PriceRange { PriceMin = priceMin, PriceMax = priceMax });
+                }
+            }
+            return list;
+        }
     }
 
 }

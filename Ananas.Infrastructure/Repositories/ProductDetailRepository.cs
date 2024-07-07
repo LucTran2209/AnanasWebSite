@@ -93,6 +93,7 @@ namespace Ananas.Infrastructure.Repositories
 
                 var search = new List<ProductDetail>();
 
+                // check sexid
                 if (flist.ListSexId != null && flist.ListSexId.Any())
                 {
                     foreach (var item in flist.ListSexId)
@@ -102,6 +103,7 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
+                // check colorid
                 if (flist.ListColorId != null && flist.ListColorId.Any())
                 {
                     foreach (var item in flist.ListColorId)
@@ -111,6 +113,7 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
+                //check categoryid
                 if (!flist.ListCategoryId.Any())
                 {
                     foreach (var item in flist.ListCategoryId)
@@ -121,6 +124,7 @@ namespace Ananas.Infrastructure.Repositories
 
 
                 }
+                //check line
                 if (!flist.ListProductLineId.Any())
                 {
                     foreach (var item in flist.ListProductLineId)
@@ -130,6 +134,7 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
+                //check styleid
                 if (!flist.ListStyleId.Any())
                 {
                     foreach (var item in flist.ListStyleId)
@@ -139,6 +144,7 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
+                //check collectionid
                 if (!flist.ListCollectionId.Any())
                 {
                     foreach (var item in flist.ListCollectionId)
@@ -148,7 +154,7 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
-
+                //check maketid
                 if (!flist.ListMarketId.Any())
                 {
                     foreach (var item in flist.ListMarketId)
@@ -158,7 +164,7 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
-
+                //check statusid
                 if (!flist.ListProductStatusId.Any())
                 {
                     foreach (var item in flist.ListProductStatusId)
@@ -168,7 +174,8 @@ namespace Ananas.Infrastructure.Repositories
                     }
 
                 }
-                if (!flist.ListPriceRanges.Any())
+                //check range price
+                if (flist.ListPriceRanges != null)
                 {
                     decimal min = 0;
                     decimal max = 0;
