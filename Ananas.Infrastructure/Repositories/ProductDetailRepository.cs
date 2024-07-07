@@ -91,111 +91,60 @@ namespace Ananas.Infrastructure.Repositories
                 //lấy ra tất cả productdetail
                 var filter = await _dbContext.ProductDetails.Include(p => p.Product).ThenInclude(p => p.Category).Include(p => p.Sex).ToListAsync();
 
-                var search = new List<ProductDetail>();
-
                 // check sexid
                 if (flist.ListSexId != null && flist.ListSexId.Any())
                 {
-                    foreach (var item in flist.ListSexId)
-                    {
-                        var list = filter.Where(p => p.SexId == item.SexId).ToList();
-                        search.AddRange(list);
-                    }
+                    filter = filter.Where(p => flist.ListSexId.Select(item => item.SexId).Contains(p.SexId)).ToList();
 
                 }
                 // check colorid
                 if (flist.ListColorId != null && flist.ListColorId.Any())
                 {
-                    foreach (var item in flist.ListColorId)
-                    {
-                        var list = filter.Where(p => p.ColorId == item.ColorId).ToList();
-                        search.AddRange(list);
-                    }
+                    filter = filter.Where(p => flist.ListColorId.Select(item => item.ColorId).Contains(p.ColorId)).ToList();
 
                 }
                 //check categoryid
-                if (!flist.ListCategoryId.Any())
+                if (flist.ListCategoryId != null && flist.ListCategoryId.Any())
                 {
-                    foreach (var item in flist.ListCategoryId)
-                    {
-                        var list = filter.Where(p => p.Product.CategoryId == item.CategoryId).ToList();
-                        search.AddRange(list);
-                    }
-
-
+                    filter = filter.Where(p => flist.ListCategoryId.Select(item => item.CategoryId).Contains(p.Product.CategoryId)).ToList();
                 }
                 //check line
-                if (!flist.ListProductLineId.Any())
+                if (flist.ListProductLineId != null && flist.ListProductLineId.Any())
                 {
-                    foreach (var item in flist.ListProductLineId)
-                    {
-                        var list = filter.Where(p => p.Product.ProductLineId == item.ProductLineId).ToList();
-                        search.AddRange(list);
-                    }
-
+                    filter = filter.Where(p => flist.ListProductLineId.Select(item => item.ProductLineId).Contains(p.Product.ProductLineId)).ToList();
                 }
                 //check styleid
-                if (!flist.ListStyleId.Any())
+                if (flist.ListStyleId != null && flist.ListStyleId.Any())
                 {
-                    foreach (var item in flist.ListStyleId)
-                    {
-                        var list = filter.Where(p => p.Product.StyleId == item.StyleId).ToList();
-                        search.AddRange(list);
-                    }
-
+                    filter = filter.Where(p => flist.ListStyleId.Select(item => item.StyleId).Contains(p.Product.StyleId)).ToList();
                 }
                 //check collectionid
-                if (!flist.ListCollectionId.Any())
+                if (flist.ListCollectionId != null && flist.ListCollectionId.Any())
                 {
-                    foreach (var item in flist.ListCollectionId)
-                    {
-                        var list = filter.Where(p => p.Product.CollectionId == item.CollectionId).ToList();
-                        search.AddRange(list);
-                    }
-
+                    filter = filter.Where(p => flist.ListCollectionId.Select(item => item.CollectionId).Contains(p.Product.CollectionId)).ToList();
                 }
                 //check maketid
-                if (!flist.ListMarketId.Any())
+                if (flist.ListMarketId != null && flist.ListMarketId.Any())
                 {
-                    foreach (var item in flist.ListMarketId)
-                    {
-                        var list = filter.Where(p => p.Product.MarketId == item.MarketId).ToList();
-                        search.AddRange(list);
-                    }
-
+                    filter = filter.Where(p => flist.ListMarketId.Select(item => item.MarketId).Contains(p.Product.MarketId)).ToList();
                 }
                 //check statusid
-                if (!flist.ListProductStatusId.Any())
+                if (flist.ListProductStatusId != null && flist.ListProductStatusId.Any())
                 {
-                    foreach (var item in flist.ListProductStatusId)
-                    {
-                        var list = filter.Where(p => p.Product.ProductStatusId == item.ProductStatusId).ToList();
-                        search.AddRange(list);
-                    }
-
+                    filter = filter.Where(p => flist.ListProductStatusId.Select(item => item.ProductStatusId).Contains(p.Product.ProductStatusId)).ToList();
                 }
                 //check range price
-                if (flist.ListPriceRanges != null)
+                if (flist.ListPriceRanges != null && flist.ListPriceRanges.Any())
                 {
-                    decimal min = 0;
-                    decimal max = 0;
-                    foreach (var item in flist.ListPriceRanges)
-                    {
-                        min = item.PriceMin;
-                        max = item.PriceMax;
-                        if (min < max)
-                        {
-                            var list = filter.Where(p => p.Product.Price > min && p.Product.Price < max).ToList();
-                            search.AddRange(list);
-                        }
-                    }
+                    filter = filter.Where(p =>
+                    flist.ListPriceRanges.Any(range => p.Product.Price >= range.PriceMin && p.Product.Price <= range.PriceMax)
+                    && flist.ListMarketId.Select(item => item.MarketId).Contains(p.Product.MarketId)
+                    ).ToList();
                 }
 
-                //xoa bo nhung detailId trung lap
-                search = search.DistinctBy(p => p.ProductDetailId).ToList();
 
                 //add value in ouput
-                foreach (var item in search)
+                foreach (var item in filter)
                 {
                     ProductDetailFilterOutputDto p = new ProductDetailFilterOutputDto();
                     p.ProductId = item.ProductId;

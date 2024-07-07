@@ -27,6 +27,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Ananas.Core\Ananas.Core.csproj" />
+		<ProjectReference Include="..\Ananas.Services\Ananas.Services.csproj" />
 	</ItemGroup>
 
 </Project>

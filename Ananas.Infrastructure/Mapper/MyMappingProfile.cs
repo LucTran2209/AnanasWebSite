@@ -1,7 +1,8 @@
 ﻿using Ananas.Core.Models;
 using Ananas.Core.OutputDataAccess;
+using Ananas.Services.Services.ProductDetailService;
 using AutoMapper;
-
+using static Ananas.Services.Services.ProductDetailService.ProductDetailFilterDtoService;
 
 namespace Ananas.Infrastructure.Mapper
 {
@@ -13,6 +14,8 @@ namespace Ananas.Infrastructure.Mapper
             CreateMap<Product, ProductDto>()
                 .ForMember(src => src.ProductDetailList, opt => opt.MapFrom(dest => dest.ProductDetails));
             CreateMap<ProductDetailCreateInputDto, ProductDetail>();
+            CreateMap<ProductDetailFilterInputDto, ProductDetailFilterDtoInputService>();
+            CreateMap<ProductDetailFilterOutputDto, ProductDetailFilterDtoOutputService>();
         }
     }
 }

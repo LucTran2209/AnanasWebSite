@@ -4,6 +4,7 @@ using Ananas.Core.OutputDataAccess;
 using Ananas.Services.Common.Base;
 using Ananas.Services.Interfaces;
 using AutoMapper;
+using static Ananas.Services.Services.ProductDetailService.ProductDetailFilterDtoService;
 
 namespace Ananas.Services.Services.ProductDetailService
 {
@@ -48,12 +49,19 @@ namespace Ananas.Services.Services.ProductDetailService
             }
         }
 
-        public async Task<List<ProductDetailFilterOutputDto>> GetProductDetailFilter(ProductDetailFilterInputDto flist)
+        public async Task<List<ProductDetailFilterDtoOutputService>> GetProductDetailFilter(ProductDetailFilterDtoInputService flist)
         {
             try
             {
-                var list = await _unitOfWork.ProductDetails.GetProductDetailFilter(flist);
-                return list;
+                var input = new ProductDetailFilterInputDto();
+                _mapper.Map(input, flist);
+
+                var list = await _unitOfWork.ProductDetails.GetProductDetailFilter(input);
+
+                List<ProductDetailFilterDtoOutputService> output = new List<ProductDetailFilterDtoOutputService>();
+                _mapper.Map(list, output);
+
+                return output;
             }
             catch (Exception)
             {
