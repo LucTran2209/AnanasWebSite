@@ -2,6 +2,7 @@
 using Ananas.Services.Interfaces;
 using ApplicationCommon.Abstractions.Dtos.Results;
 using Microsoft.AspNetCore.Mvc;
+using static Ananas.Services.Services.ProductDetailService.ProductDetailFilterDtoService;
 
 namespace Ananas.Api.Controllers
 {
@@ -102,7 +103,7 @@ namespace Ananas.Api.Controllers
             }
         }
         [HttpPost("GetFilterProductDeatil")]
-        public async Task<IActionResult> GetFilterProductDeatil(ProductDetailFilterInputDto filterDto
+        public async Task<IActionResult> GetFilterProductDeatil(ProductDetailFilterDtoInputService filterDto
         )
         {
             try
