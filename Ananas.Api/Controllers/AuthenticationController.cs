@@ -17,7 +17,7 @@ namespace Ananas.Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> LoginByUserNamePassword(string userName, string password)
+        public async Task<IActionResult> LoginByUserNamePassword([FromBody]string userName, [FromBody]string password)
         {
             try
             {
