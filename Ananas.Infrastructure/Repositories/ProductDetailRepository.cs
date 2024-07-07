@@ -85,12 +85,20 @@ namespace Ananas.Infrastructure.Repositories
         {
             try
             {
+                //khai báo output
+                List<ProductDetailFilterOutputDto> listfilter = new List<ProductDetailFilterOutputDto>();
+
+                //lấy ra tất cả productdetail
                 var filter = await _dbContext.ProductDetails.Include(p => p.Product).ThenInclude(p => p.Category).Include(p => p.Sex).ToListAsync();
+
+                var search = new List<ProductDetail>();
+
                 if (flist.ListSexId != null && flist.ListSexId.Any())
                 {
                     foreach (var item in flist.ListSexId)
                     {
-                        filter = filter.Where(p => p.SexId == item.SexId).ToList();
+                        var list = filter.Where(p => p.SexId == item.SexId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -98,7 +106,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListColorId)
                     {
-                        filter = filter.Where(p => p.ColorId == item.ColorId).ToList();
+                        var list = filter.Where(p => p.ColorId == item.ColorId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -106,7 +115,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListCategoryId)
                     {
-                        filter = filter.Where(p => p.Product.CategoryId == item.CategoryId).ToList();
+                        var list = filter.Where(p => p.Product.CategoryId == item.CategoryId).ToList();
+                        search.AddRange(list);
                     }
 
 
@@ -115,7 +125,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListProductLineId)
                     {
-                        filter = filter.Where(p => p.Product.ProductLineId == item.ProductLineId).ToList();
+                        var list = filter.Where(p => p.Product.ProductLineId == item.ProductLineId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -123,7 +134,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListStyleId)
                     {
-                        filter = filter.Where(p => p.Product.StyleId == item.StyleId).ToList();
+                        var list = filter.Where(p => p.Product.StyleId == item.StyleId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -131,7 +143,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListCollectionId)
                     {
-                        filter = filter.Where(p => p.Product.CollectionId == item.CollectionId).ToList();
+                        var list = filter.Where(p => p.Product.CollectionId == item.CollectionId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -140,7 +153,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListMarketId)
                     {
-                        filter = filter.Where(p => p.Product.MarketId == item.MarketId).ToList();
+                        var list = filter.Where(p => p.Product.MarketId == item.MarketId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -149,7 +163,8 @@ namespace Ananas.Infrastructure.Repositories
                 {
                     foreach (var item in flist.ListProductStatusId)
                     {
-                        filter = filter.Where(p => p.Product.ProductStatusId == item.ProductStatusId).ToList();
+                        var list = filter.Where(p => p.Product.ProductStatusId == item.ProductStatusId).ToList();
+                        search.AddRange(list);
                     }
 
                 }
@@ -163,12 +178,17 @@ namespace Ananas.Infrastructure.Repositories
                         max = item.PriceMax;
                         if (min < max)
                         {
-                            filter = filter.Where(p => p.Product.Price > min && p.Product.Price < max).ToList();
+                            var list = filter.Where(p => p.Product.Price > min && p.Product.Price < max).ToList();
+                            search.AddRange(list);
                         }
                     }
                 }
-                List<ProductDetailFilterOutputDto> listfilter = new List<ProductDetailFilterOutputDto>();
-                foreach (var item in filter)
+
+                //xoa bo nhung detailId trung lap
+                search = search.DistinctBy(p => p.ProductDetailId).ToList();
+
+                //add value in ouput
+                foreach (var item in search)
                 {
                     ProductDetailFilterOutputDto p = new ProductDetailFilterOutputDto();
                     p.ProductId = item.ProductId;
