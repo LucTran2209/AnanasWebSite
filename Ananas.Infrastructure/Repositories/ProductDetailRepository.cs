@@ -81,12 +81,12 @@ namespace Ananas.Infrastructure.Repositories
 
 
 
-        public async Task<List<ProductDetailFilterOutputDto>> GetProductDetailFilter(ProductDetailFilterInputDto flist)
+        public async Task<ProductDetailListsDto> GetProductDetailFilter(ProductDetailFilterInputDto flist)
         {
             try
             {
                 //khai báo output
-                List<ProductDetailFilterOutputDto> listfilter = new List<ProductDetailFilterOutputDto>();
+                ProductDetailListsDto listfilter = new ProductDetailListsDto();
 
                 //lấy ra tất cả productdetail
                 var filter = await _dbContext.ProductDetails.Include(p => p.Product).ThenInclude(p => p.Category).Include(p => p.Sex).ToListAsync();
@@ -153,7 +153,8 @@ namespace Ananas.Infrastructure.Repositories
                     p.Quantity = item.Product.Quantity;
                     p.Size = item.Product.Size;
                     p.Price = (decimal)item.Product.Price;
-                    listfilter.Add(p);
+
+                    listfilter.productDetailFilterOutputDtos.Add(p);
 
                 }
                 return listfilter;

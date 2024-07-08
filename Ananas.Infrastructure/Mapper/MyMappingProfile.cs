@@ -16,6 +16,7 @@ namespace Ananas.Infrastructure.Mapper
             CreateMap<ProductDetailCreateInputDto, ProductDetail>();
             CreateMap<ProductDetailFilterInputDto, ProductDetailFilterDtoInputService>();
             CreateMap<ProductDetailFilterOutputDto, ProductDetailFilterDtoOutputService>();
+            CreateMap<ProductDetailListsDto, ProductDetailListsDtoService>();
         }
     }
 }

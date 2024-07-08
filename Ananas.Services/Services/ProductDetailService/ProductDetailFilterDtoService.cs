@@ -1,4 +1,6 @@
-﻿namespace Ananas.Services.Services.ProductDetailService
+﻿using Ananas.Core.OutputDataAccess;
+
+namespace Ananas.Services.Services.ProductDetailService
 {
     public class ProductDetailFilterDtoService
     {
@@ -67,7 +69,14 @@
     }
 
 
-
+    public class ProductDetailListsDtoService
+    {
+        public List<ProductDetailFilterOutputDto> productDetailFilterOutputDtos { get; set; }
+        public ProductDetailListsDtoService()
+        {
+            productDetailFilterOutputDtos = new List<ProductDetailFilterOutputDto>();
+        }
+    }
 
     // dto output product fillter
     public class ProductDetailFilterDtoOutputService

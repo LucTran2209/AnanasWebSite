@@ -85,6 +85,14 @@
     }
 
     // dto output product fillter
+    public class ProductDetailListsDto
+    {
+        public List<ProductDetailFilterOutputDto> productDetailFilterOutputDtos { get; set; }
+        public ProductDetailListsDto()
+        {
+            productDetailFilterOutputDtos = new List<ProductDetailFilterOutputDto>();
+        }
+    }
     public class ProductDetailFilterOutputDto
     {
         public int ProductDetailId { get; set; }

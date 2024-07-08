@@ -49,7 +49,7 @@ namespace Ananas.Services.Services.ProductDetailService
             }
         }
 
-        public async Task<List<ProductDetailFilterDtoOutputService>> GetProductDetailFilter(ProductDetailFilterDtoInputService flist)
+        public async Task<ProductDetailListsDtoService> GetProductDetailFilter(ProductDetailFilterDtoInputService flist)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Ananas.Services.Services.ProductDetailService
 
                 var list = await _unitOfWork.ProductDetails.GetProductDetailFilter(input);
 
-                List<ProductDetailFilterDtoOutputService> output = new List<ProductDetailFilterDtoOutputService>();
+                ProductDetailListsDtoService output = new ProductDetailListsDtoService();
                 _mapper.Map(list, output);
 
                 return output;

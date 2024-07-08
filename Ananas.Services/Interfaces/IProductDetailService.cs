@@ -12,7 +12,7 @@ namespace Ananas.Services.Interfaces
         Task<ProductDetail> GetById(int id);
         Task<bool> CreateNewDetail(ProductDetailCreateInputDto pdetail);
         Task<ProductDetailCreateInputDto> UpdateDetail(int id, ProductDetailCreateInputDto pdetail);
-        Task<List<ProductDetailFilterDtoOutputService>> GetProductDetailFilter(ProductDetailFilterDtoInputService flist);
+        Task<ProductDetailListsDtoService> GetProductDetailFilter(ProductDetailFilterDtoInputService flist);
 
     }
 }
