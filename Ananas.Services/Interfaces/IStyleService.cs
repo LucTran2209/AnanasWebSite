@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ananas.Services.Services.StyleService.SyleServiceOutputDto;
 
 namespace Ananas.Services.Interfaces
 {
@@ -13,6 +14,6 @@ namespace Ananas.Services.Interfaces
         Task<IEnumerable<Style>> GetAll();
         Task<bool> Create(StyleCreateInputDto styleDto);
         Task<bool> Update(StyleUpdateInputDto styleDto);
-        Task<List<GetByNameOutputDto>> GetByName(string name);
+        Task<SetStylesByNameOutputDtoService> GetStylesByName(GetStylesByNameInputDtoService inputDto);
     }
 }

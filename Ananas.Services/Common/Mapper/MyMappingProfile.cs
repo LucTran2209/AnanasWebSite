@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ananas.Core.OutputDataAccess;
+using static Ananas.Core.OutputDataAccess.StyleDto;
+using static Ananas.Services.Services.StyleService.SyleServiceOutputDto;
 
 namespace Ananas.Services.Common.Mapper
 {
@@ -18,9 +21,11 @@ namespace Ananas.Services.Common.Mapper
         {
 
             CreateMap<Color, ColorDto>();
+
             CreateMap<StyleCreateInputDto, Style>();
             CreateMap<StyleUpdateInputDto, Style>();
-            CreateMap<Style, GetByNameOutputDto>();
+            //CreateMap<Style, GetStylesByNameOutputDto>(); //
+            //
 
             CreateMap<CollectionCreateInputDto, Collection>();
             CreateMap<CollectionUpdateInputDto, Collection>();
@@ -29,6 +34,8 @@ namespace Ananas.Services.Common.Mapper
             CreateMap<CategoryCreateInputDto, Category>();
             CreateMap<CategoryUpdateInputDto, Category>();
             CreateMap<Category, CategoryGetByNameOutputDto>();
+
+           
         }
     }
 }

@@ -68,13 +68,14 @@ namespace Ananas.Api.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> GetByName([FromQuery] string name)
+        public async Task<IActionResult> GetStylesByName([FromQuery] GetStylesByNameInputDtoService nameStyle)
         {
             try
             {
-                var styles = await _styleService.GetByName(name);
-                var res = Result.Success(styles);
-                return res;
+                var inputDto = nameStyle;
+                var styles = await _styleService.GetStylesByName(inputDto);
+                //var res = Result.Success(styles);
+                return Ok(styles);
             }
             catch (Exception)
             {

@@ -11,11 +11,11 @@ namespace ApplicationCommon.Abstractions.Dtos.Results
     public class Result : IActionResult
     {
         public int StatusCode { get; }
-        public object Data { get; }
+        public object? Data { get; }
         public string Message { get; }
         public Dictionary<string, string[]>? ModelState { get; }
 
-        public Result(int statusCode, object data, string message, Dictionary<string, string[]> modelState = null)
+        public Result(int statusCode, object data, string message, Dictionary<string, string[]>? modelState = null)
         {
             StatusCode = statusCode;
             Data = data;
@@ -56,7 +56,7 @@ namespace ApplicationCommon.Abstractions.Dtos.Results
             return new Result(StatusCodes.Status200OK, data, message);
         }
 
-        public static Result Failure(object data, string message = "Operation failed.", ModelStateDictionary modelState = null)
+        public static Result Failure(object data, string message = "Operation failed.", ModelStateDictionary? modelState = null)
         {
             var modelStateDict = modelState?.ToDictionary(
                 kvp => kvp.Key,

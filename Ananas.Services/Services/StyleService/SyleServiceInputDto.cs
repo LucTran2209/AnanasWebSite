@@ -1,5 +1,4 @@
-﻿using Ananas.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +12,17 @@ namespace Ananas.Services.Services.StyleService
         public string? Slug { get; set; }
     }
 
-    // OutputDto for method GetByName
-    public class GetByNameOutputDto
+    public class StyleUpdateInputDto
     {
         public int StyleId { get; set; }
         public string? Name { get; set; }
         public string? Slug { get; set; }
     }
 
-    public class StyleUpdateInputDto
+    public class GetStylesByNameInputDtoService
     {
-        public int StyleId { get; set; } 
         public string? Name { get; set; }
-        public string? Slug { get; set; }
     }
+
+   
 }

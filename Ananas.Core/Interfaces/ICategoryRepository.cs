@@ -12,6 +12,6 @@ namespace Ananas.Core.Interfaces
     {
         Task<List<Category>> GetByName(string name);
         Task<bool> UpdateCollection(Category category);
-        Task<Category> GetById(int id);
+        new Task<Category> GetById(int id);
     }
 }

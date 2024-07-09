@@ -52,7 +52,12 @@ namespace Ananas.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.Categories.FindAsync(id);
+                var category = await _dbContext.Categories.FindAsync(id);
+                if (category == null)
+                {
+                    throw new Exception($"Category with ID {id} not found.");
+                }
+                return category;
             }
             catch (Exception)
             {
@@ -60,18 +65,27 @@ namespace Ananas.Infrastructure.Repositories
             }
         }
 
+
         public async Task<List<Category>> GetByName(string name)
         {
             try
             {
-                return await _dbContext.Categories.Where(s => s.Name.Contains(name)).ToListAsync();
+                if (name == null)
+                {
+                    throw new ArgumentNullException(nameof(name));
+                }
+
+                return await _dbContext.Categories
+                                        .Where(s => s.Name != null && s.Name.Contains(name))
+                                        .ToListAsync();
             }
             catch (Exception)
             {
                 throw;
             }
         }
-      
+
+
         public async Task<bool> UpdateCollection(Category category)
         {
             try
