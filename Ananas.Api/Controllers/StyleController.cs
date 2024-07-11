@@ -75,7 +75,8 @@ namespace Ananas.Api.Controllers
                 var inputDto = nameStyle;
                 var styles = await _styleService.GetStylesByName(inputDto);
                 //var res = Result.Success(styles);
-                return Ok(styles);
+                //Console.WriteLine(styles.styles.Count);
+                return Ok(styles.styles);
             }
             catch (Exception)
             {

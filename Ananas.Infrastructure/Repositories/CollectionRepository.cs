@@ -1,5 +1,6 @@
 ﻿using Ananas.Core.Interfaces;
 using Ananas.Core.Models;
+using Ananas.Core.OutputDataAccess;
 using Ananas.Infrastructure.Common;
 using Ananas.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ananas.Core.OutputDataAccess.CollectionDto;
 
 namespace Ananas.Infrastructure.Repositories
 {
@@ -65,27 +67,6 @@ namespace Ananas.Infrastructure.Repositories
             }
         }
 
-
-        public async Task<List<Collection>> GetByName(string name)
-        {
-            try
-            {
-                if (name == null)
-                {
-                    throw new ArgumentNullException(nameof(name));
-                }
-
-                return await _dbContext.Collections
-                                        .Where(c => c.Name != null && c.Name.Contains(name))
-                                        .ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-
         public async Task<bool> UpdateCollection(Collection collection)
         {
             try
@@ -109,6 +90,40 @@ namespace Ananas.Infrastructure.Repositories
         public override void Update(Collection entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<CollectionDto.SetCollectionsNameOutputDto> GetByName(CollectionDto.InputSetCollectionsDto InputnameCollection)
+        {
+            try
+            {
+                if (InputnameCollection.Name == null)
+                {
+                    throw new ArgumentNullException(nameof(InputnameCollection.Name));
+                }
+
+                List<Collection> modelCollectionList = new List<Collection>();
+
+                SetCollectionsNameOutputDto listbydto = new SetCollectionsNameOutputDto();
+
+                modelCollectionList = await _dbContext.Collections.Where(s => s.Name != null && s.Name.Contains(InputnameCollection.Name))
+                                .ToListAsync();
+                foreach (var collection in modelCollectionList)
+                {
+                    var item = new CollectionDto.ListCollectionDto
+                    {
+                        CollectionId = collection.CollectionId,
+                        Name = collection.Name,
+                        Slug = collection.Slug
+                    };
+                    listbydto.CollectionList1.Add(item);
+                }
+
+                return listbydto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

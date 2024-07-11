@@ -20,10 +20,8 @@ namespace Ananas.Services.Services.CollectionService
         public string? Slug { get; set; }
     }
 
-    public class CollectionGetByNameOutputDto
+    public class GetCollectionsByNameInputDtoService
     {
-        public int CollectionId { get; set; }
         public string? Name { get; set; }
-        public string? Slug { get; set; }
     }
 }

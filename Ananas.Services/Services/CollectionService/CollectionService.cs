@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ananas.Core.OutputDataAccess.CollectionDto;
+using static Ananas.Core.OutputDataAccess.StyleDto;
+using static Ananas.Services.Services.CollectionService.CollectionServiceOutputDto;
+using static Ananas.Services.Services.StyleService.SyleServiceOutputDto;
 
 namespace Ananas.Services.Services.CollectionService
 {
@@ -57,13 +61,29 @@ namespace Ananas.Services.Services.CollectionService
                 throw;
             }
         }
-
-        public async Task<List<CollectionGetByNameOutputDto>> GetByName(string name)
+        public async Task<SetCollectionsByNameOutputDtoService> GetCollectionsByName(GetCollectionsByNameInputDtoService inputDto)
         {
             try
             {
-                var collections = await _unitOfWork.Collections.GetByName(name);
-                return _mapper.Map<List<CollectionGetByNameOutputDto>>(collections);
+                if (inputDto.Name == null)
+                {
+                    throw new ArgumentNullException(nameof(inputDto.Name));
+                }
+                var input = new InputSetCollectionsDto();
+                input.Name = inputDto.Name;
+                var collections = await _unitOfWork.Collections.GetByName(input);
+                var listoutput = new SetCollectionsByNameOutputDtoService();
+                foreach (var collection in collections.CollectionList1)
+                {
+                    var item = new CollectionListDto();
+                    item.Name = collection.Name;
+                    item.CollectionId = collection.CollectionId;
+                    item.Slug = collection.Slug;
+                    listoutput.collections.Add(item);
+                }
+
+
+                return listoutput;
             }
             catch (Exception)
             {

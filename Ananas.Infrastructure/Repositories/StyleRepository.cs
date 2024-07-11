@@ -80,9 +80,8 @@ namespace Ananas.Infrastructure.Repositories
 
                 SetStylesNameOutputDto listbydto = new SetStylesNameOutputDto();
 
-                modelStyleList = await _dbContext.Styles.Where(s => s.Name.Contains(inputnameStyle.Name))
+                modelStyleList = await _dbContext.Styles.Where(s => s.Name != null && s.Name.Contains(inputnameStyle.Name))
                                 .ToListAsync();
-
                 foreach (var style in modelStyleList)
                 {
                     var item = new StyleDto.ListDto

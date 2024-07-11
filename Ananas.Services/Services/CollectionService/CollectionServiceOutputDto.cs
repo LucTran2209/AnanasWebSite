@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Ananas.Services.Services.CollectionService
 {
-    internal class CollectionServiceOutputDto
+    public class CollectionServiceOutputDto
     {
+        public class SetCollectionsByNameOutputDtoService
+        {
+            public List<CollectionListDto> collections = new List<CollectionListDto>();
+        }
+        public class CollectionListDto
+        {
+            public int CollectionId { get; set; }
+            public string? Name { get; set; }
+            public string? Slug { get; set; }
+        }
     }
 }

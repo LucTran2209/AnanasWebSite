@@ -67,13 +67,13 @@ namespace Ananas.Api.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> GetByName([FromQuery] string name)
+        public async Task<IActionResult> GetCategoriesByName([FromQuery] GetCategoriesByNameInputDtoService nameCategory)
         {
             try
             {
-                var categories = await _categoryService.GetByName(name);
-                var res = Result.Success(categories);
-                return res;
+                var inputDto = nameCategory;
+                var categories = await _categoryService.GetCategoriesByName(inputDto);
+                return Ok(categories.categories);
             }
             catch (Exception)
             {

@@ -69,13 +69,13 @@ namespace Ananas.Api.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> GetByName([FromQuery] string name)
+        public async Task<IActionResult> GetCollectionsByName([FromQuery] GetCollectionsByNameInputDtoService nameCollection)
         {
             try
             {
-                var collections = await _collectionService.GetByName(name);
-                var res = Result.Success(collections);
-                return res;
+                var inputDto = nameCollection;
+                var collections = await _collectionService.GetCollectionsByName(inputDto);
+                return Ok(collections.collections);
             }
             catch (Exception)
             {

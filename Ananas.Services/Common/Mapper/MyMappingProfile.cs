@@ -24,16 +24,15 @@ namespace Ananas.Services.Common.Mapper
 
             CreateMap<StyleCreateInputDto, Style>();
             CreateMap<StyleUpdateInputDto, Style>();
-            //CreateMap<Style, GetStylesByNameOutputDto>(); //
-            //
+            //CreateMap<Style, GetStylesByNameOutputDto>();
 
             CreateMap<CollectionCreateInputDto, Collection>();
             CreateMap<CollectionUpdateInputDto, Collection>();
-            CreateMap<Collection, CollectionGetByNameOutputDto>();
+            //CreateMap<Collection, CollectionGetByNameOutputDto>();
 
             CreateMap<CategoryCreateInputDto, Category>();
             CreateMap<CategoryUpdateInputDto, Category>();
-            CreateMap<Category, CategoryGetByNameOutputDto>();
+            //CreateMap<Category, CategoryGetByNameOutputDto>();
 
            
         }

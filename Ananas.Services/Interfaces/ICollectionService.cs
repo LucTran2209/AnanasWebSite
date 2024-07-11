@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ananas.Services.Services.CollectionService.CollectionServiceOutputDto;
 
 namespace Ananas.Services.Interfaces
 {
@@ -13,6 +14,6 @@ namespace Ananas.Services.Interfaces
         Task<IEnumerable<Collection>> GetAll();
         Task<bool> Create(CollectionCreateInputDto collectionDto);
         Task<bool> Update(CollectionUpdateInputDto collectionDto);
-        Task<List<CollectionGetByNameOutputDto>> GetByName(string name);
+        Task<SetCollectionsByNameOutputDtoService> GetCollectionsByName(GetCollectionsByNameInputDtoService name);
     }
 }

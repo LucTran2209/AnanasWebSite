@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ananas.Services.Services.CategoryService.CategoryServiceOutputDto;
 
 namespace Ananas.Services.Interfaces
 {
@@ -13,6 +14,6 @@ namespace Ananas.Services.Interfaces
         Task<IEnumerable<Category>> GetAll();
         Task<bool> Create(CategoryCreateInputDto categoryDto);
         Task<bool> Update(CategoryUpdateInputDto categoryDto);
-        Task<List<CategoryGetByNameOutputDto>> GetByName(string name);
+        Task<SetCategoriesByNameOutputDtoService> GetCategoriesByName(GetCategoriesByNameInputDtoService inputDto);
     }
 }

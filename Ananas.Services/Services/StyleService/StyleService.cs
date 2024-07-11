@@ -71,7 +71,6 @@ namespace Ananas.Services.Services.StyleService
                 var input = new InputSetStylesDto();
                 input.Name = inputDto.Name;
                 var styles = await _unitOfWork.Styles.GetByName(input);
-
                 var listoutput = new SetStylesByNameOutputDtoService();
                 foreach ( var style in styles.StyleList1)
                 {

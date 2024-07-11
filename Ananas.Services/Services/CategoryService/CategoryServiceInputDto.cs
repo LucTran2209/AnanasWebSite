@@ -19,10 +19,8 @@ namespace Ananas.Services.Services.CategoryService
         public string? Slug { get; set; }
     }
 
-    public class CategoryGetByNameOutputDto
+    public class GetCategoriesByNameInputDtoService
     {
-        public int CategoryId { get; set; }
         public string? Name { get; set; }
-        public string? Slug { get; set; }
     }
 }

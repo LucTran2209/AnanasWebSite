@@ -1,5 +1,6 @@
 ﻿using Ananas.Core.Interfaces;
 using Ananas.Core.Models;
+using Ananas.Core.OutputDataAccess;
 using Ananas.Infrastructure.Common;
 using Ananas.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ananas.Core.OutputDataAccess.CategoryDto;
 
 namespace Ananas.Infrastructure.Repositories
 {
@@ -65,27 +67,6 @@ namespace Ananas.Infrastructure.Repositories
             }
         }
 
-
-        public async Task<List<Category>> GetByName(string name)
-        {
-            try
-            {
-                if (name == null)
-                {
-                    throw new ArgumentNullException(nameof(name));
-                }
-
-                return await _dbContext.Categories
-                                        .Where(s => s.Name != null && s.Name.Contains(name))
-                                        .ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-
         public async Task<bool> UpdateCollection(Category category)
         {
             try
@@ -111,5 +92,38 @@ namespace Ananas.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<CategoryDto.SetCategoriesNameOutputDto> GetByName(CategoryDto.InputSetCategoriesDto inputnameCategory)
+        {
+            try
+            {
+                if (inputnameCategory.Name == null)
+                {
+                    throw new ArgumentNullException(nameof(inputnameCategory.Name));
+                }
+
+                List<Category> modelCategoryList = new List<Category>();
+
+                SetCategoriesNameOutputDto listbydto = new SetCategoriesNameOutputDto();
+
+                modelCategoryList = await _dbContext.Categories.Where(s => s.Name != null && s.Name.Contains(inputnameCategory.Name))
+                                .ToListAsync();
+                foreach (var category in modelCategoryList)
+                {
+                    var item = new CategoryDto.ListDto
+                    {
+                        CategoryId = category.CategoryId,
+                        Name = category.Name,
+                        Slug = category.Slug
+                    };
+                    listbydto.CategoryList1.Add(item);
+                }
+
+                return listbydto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
