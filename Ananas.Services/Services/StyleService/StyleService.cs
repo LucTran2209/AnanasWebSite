@@ -68,12 +68,13 @@ namespace Ananas.Services.Services.StyleService
                 {
                     throw new ArgumentNullException(nameof(inputDto.Name));
                 }
+
                 var input = new InputSetStylesDto();
                 input.Name = inputDto.Name;
                 var styles = await _unitOfWork.Styles.GetByName(input);
                 var listoutput = new SetStylesByNameOutputDtoService();
                 foreach ( var style in styles.StyleList1)
-                {
+                {            
                     var item = new StyleListDto();
                     item.Name = style.Name;
                     item.StyleId = style.StyleId;

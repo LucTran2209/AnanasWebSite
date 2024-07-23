@@ -50,6 +50,7 @@ namespace Ananas.Infrastructure.Repositories
                 throw;
             }
         }
+
         public override async Task<Style> GetById(int id)
         {
             try
@@ -100,9 +101,6 @@ namespace Ananas.Infrastructure.Repositories
                 throw;
             }
         }
-
-
-
 
         public async Task<bool> UpdateStyle(Style style)
         {
