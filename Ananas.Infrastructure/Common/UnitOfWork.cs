@@ -16,18 +16,30 @@ namespace Ananas.Infrastructure.Common
 
         public IMarketRepository Markets { get; }
 
+        public IProductRepository Products { get; }
+
+        public ITokenRepository Tokens { get; }
+
+        public IUserRepository Users { get; }
+
         public UnitOfWork(AnanasDbContext dbContext,
                           IColorRepository colorRepository,
-                          IMarketRepository marketRepository)
+                          IMarketRepository marketRepository,
+                          IProductRepository products,
+                          ITokenRepository authen,
+                          IUserRepository users)
         {
             _dbContext = dbContext;
             Colors = colorRepository;
             Markets = marketRepository;
+            Products = products;
+            Tokens = authen;
+            Users = users;
         }
 
-        public int Save()
+        public async Task<int> Save()
         {
-            return _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
         public void Dispose()

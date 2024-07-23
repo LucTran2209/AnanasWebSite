@@ -11,7 +11,7 @@ namespace Ananas.Services.Services.MarketService
 
     }
 
-    // OutputDto for method GetByName
+    // InputDto for method GetByName
     public class GetByNameOutputDto
     {
 
